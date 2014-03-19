@@ -11,6 +11,7 @@
 		3A46729B18D02742000FEF57 /* Tetris.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3A46729A18D02742000FEF57 /* Tetris.1 */; };
 		3A4672A218D02D70000FEF57 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4672A118D02D70000FEF57 /* OpenGL.framework */; };
 		3A4672A418D02D75000FEF57 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4672A318D02D75000FEF57 /* GLUT.framework */; };
+		3A847BED18D97BFA002481BA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A847BEC18D97BFA002481BA /* OpenAL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,8 @@
 		3A46729A18D02742000FEF57 /* Tetris.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Tetris.1; sourceTree = "<group>"; };
 		3A4672A118D02D70000FEF57 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
 		3A4672A318D02D75000FEF57 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/GLUT.framework; sourceTree = DEVELOPER_DIR; };
+		3A847BEB18D97BC4002481BA /* Tetris.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tetris.h; sourceTree = "<group>"; };
+		3A847BEC18D97BFA002481BA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/OpenAL.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A847BED18D97BFA002481BA /* OpenAL.framework in Frameworks */,
 				3A4672A418D02D75000FEF57 /* GLUT.framework in Frameworks */,
 				3A4672A218D02D70000FEF57 /* OpenGL.framework in Frameworks */,
 			);
@@ -50,6 +54,7 @@
 		3A46728C18D02742000FEF57 = {
 			isa = PBXGroup;
 			children = (
+				3A847BEC18D97BFA002481BA /* OpenAL.framework */,
 				3A4672A318D02D75000FEF57 /* GLUT.framework */,
 				3A4672A118D02D70000FEF57 /* OpenGL.framework */,
 				3A46729718D02742000FEF57 /* Tetris */,
@@ -69,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				3A46729818D02742000FEF57 /* main.cpp */,
+				3A847BEB18D97BC4002481BA /* Tetris.h */,
 				3A46729A18D02742000FEF57 /* Tetris.1 */,
 			);
 			path = Tetris;
@@ -237,6 +243,7 @@
 				3A4672A018D02742000FEF57 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
