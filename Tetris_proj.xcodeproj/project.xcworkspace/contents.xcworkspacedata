@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Tetris.xcodeproj">
+      location = "self:Tetris_proj.xcodeproj">
    </FileRef>
 </Workspace>

@@ -1,5 +1,12 @@
-#ifndef Marzo_19_Tetris_h
-#define Marzo_19_Tetris_h
+#ifndef Tetris_proj_Formas_h
+#define Tetris_proj_Formas_h
+
+#define TETRIS_SHAPE_FREDDY 0
+#define TETRIS_SHAPE_L      1
+#define TETRIS_SHAPE_T      2
+#define TETRIS_SHAPE_SQUARE 3
+#define TETRIS_SHAPE_X      4
+
 
 #include <iostream>
 #include <vector>
@@ -23,6 +30,7 @@ private:
 public:
     Cuadrito(Color color) : color(color) { }
     Cuadrito() { }
+    
     void dibuja(float width) {
         glColor4f(color.R, color.G, color.B, color.A);
         glTranslatef(width / 2, width / 2, width / 2);
@@ -34,6 +42,78 @@ class Pieza {
 public:
     vector<Cuadrito> cuadritos;
     vector<Point> posiciones;
+    Pieza(){}
+    Pieza(int shape)
+    {
+        switch (shape) {
+            case TETRIS_SHAPE_FREDDY:
+                posiciones.push_back(Point(5, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(4, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(6, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(0, 1, 1, 1)));
+                posiciones.push_back(Point(5, 9, 4));
+                cuadritos.push_back(Cuadrito(Color(0, 0, 1, 1)));
+                posiciones.push_back(Point(5, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(0, 1, 0, 1)));
+                posiciones.push_back(Point(5, 8, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                break;
+            
+            case TETRIS_SHAPE_L:
+                posiciones.push_back(Point(5, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(4, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(6, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(6, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
+                
+            case TETRIS_SHAPE_T:
+                posiciones.push_back(Point(5, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(4, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(6, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
+                
+            case TETRIS_SHAPE_SQUARE:
+                posiciones.push_back(Point(5, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(4, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(4, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
+                
+            case TETRIS_SHAPE_X:
+                posiciones.push_back(Point(5, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(4, 9, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(4, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, 9, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
+                
+                
+            default:
+                break;
+        }
+
+        
+        
+
+    }
     void mover(int x, int y, int z) {
         for(int i = 0; i < posiciones.size(); i++) {
             posiciones[i].x += x;
@@ -68,9 +148,19 @@ public:
                     ocupado[x][y][z] = false;
     }
     bool estaOcupado(Pieza &pieza) {
-        for(int i = 0; i < pieza.posiciones.size(); i++)
+        for(int i = 0; i < pieza.posiciones.size(); i++){
+
+            if (pieza.posiciones[i].x < 0       ||
+                pieza.posiciones[i].x >= width   ||
+                pieza.posiciones[i].y < 0        ||
+                pieza.posiciones[i].y >= height  ||
+                pieza.posiciones[i].z < 0       ||
+                pieza.posiciones[i].z >= depth ) {
+                return true;
+            }
             if(ocupado[pieza.posiciones[i].x][pieza.posiciones[i].y][pieza.posiciones[i].z])
                 return true;
+        }
         return false;
     }
     void insertar(Pieza &pieza) {
@@ -111,7 +201,7 @@ public:
         }
     }
     void dibuja() {
-        glColor3f(1, 1, 1);
+        glColor3f(0, 0, 0);
         glutWireCube(unitWidth * width);
         glPushMatrix();
         glTranslatef(-unitWidth * width / 2, -unitWidth * width / 2, -unitWidth * width / 2);
@@ -128,4 +218,8 @@ public:
     }
 };
 
+
+
+
 #endif
+

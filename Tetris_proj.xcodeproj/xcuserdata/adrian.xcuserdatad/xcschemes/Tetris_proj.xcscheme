@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3A46729418D02742000FEF57"
-               BuildableName = "Tetris"
-               BlueprintName = "Tetris"
-               ReferencedContainer = "container:Tetris.xcodeproj">
+               BlueprintIdentifier = "3A847BF618D98841002481BA"
+               BuildableName = "Tetris_proj"
+               BlueprintName = "Tetris_proj"
+               ReferencedContainer = "container:Tetris_proj.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A46729418D02742000FEF57"
-            BuildableName = "Tetris"
-            BlueprintName = "Tetris"
-            ReferencedContainer = "container:Tetris.xcodeproj">
+            BlueprintIdentifier = "3A847BF618D98841002481BA"
+            BuildableName = "Tetris_proj"
+            BlueprintName = "Tetris_proj"
+            ReferencedContainer = "container:Tetris_proj.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A46729418D02742000FEF57"
-            BuildableName = "Tetris"
-            BlueprintName = "Tetris"
-            ReferencedContainer = "container:Tetris.xcodeproj">
+            BlueprintIdentifier = "3A847BF618D98841002481BA"
+            BuildableName = "Tetris_proj"
+            BlueprintName = "Tetris_proj"
+            ReferencedContainer = "container:Tetris_proj.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3A46729418D02742000FEF57"
-            BuildableName = "Tetris"
-            BlueprintName = "Tetris"
-            ReferencedContainer = "container:Tetris.xcodeproj">
+            BlueprintIdentifier = "3A847BF618D98841002481BA"
+            BuildableName = "Tetris_proj"
+            BlueprintName = "Tetris_proj"
+            ReferencedContainer = "container:Tetris_proj.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
