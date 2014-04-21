@@ -35,7 +35,6 @@ void endProg()
 
 #include "Formas.h"
 
-
 #define MAX_SHAPES 6
 
 Tetris tetris(10, 20, 10, .2f);

@@ -79,7 +79,7 @@ void CBInit()
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("Tetris");
     glutDisplayFunc(display);
-    glutTimerFunc(300, tetrisLoop, 0);
+
 }
 
 void displayInit()
@@ -94,7 +94,7 @@ void displayInit()
     gluLookAt(0.0f, .3f, 3, 0, 0, 0, 0.0, 1, 0.0);
     glClearColor(1.0,1.0,1.0,1);
     tetris.insertar(piezaActual);
-    
+    glutTimerFunc(300, tetrisLoop, 0);
 
 }
 
