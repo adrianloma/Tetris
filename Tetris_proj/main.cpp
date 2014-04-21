@@ -36,9 +36,10 @@ void endProg()
 #include "Formas.h"
 
 
+#define MAX_SHAPES 6
 
 Tetris tetris(10, 20, 10, .2f);
-Pieza piezaActual(TETRIS_SHAPE_SQUARE);
+Pieza piezaActual(TETRIS_SHAPE_SQUARE, tetris.getHeight());
 
 float rotacion=0.0f;
 
@@ -66,7 +67,7 @@ void init()
 {
     srand((unsigned int) time(0));
 
-    piezaActual=Pieza(rand() % 5);
+    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight());
     
     CBInit(); //display callbacks init
     displayInit();

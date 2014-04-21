@@ -64,7 +64,7 @@ void tetrisLoop(int value)
     if (tetris.estaOcupado(piezaActual)) {
         piezaActual.mover(0, 1, 0);
         tetris.insertar(piezaActual);
-        piezaActual=Pieza(rand() % 5);
+        piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight());
         
     }
         glutTimerFunc(500, tetrisLoop, 0);

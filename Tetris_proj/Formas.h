@@ -1,11 +1,12 @@
 #ifndef Tetris_proj_Formas_h
 #define Tetris_proj_Formas_h
 
-#define TETRIS_SHAPE_FREDDY 0
-#define TETRIS_SHAPE_L      1
-#define TETRIS_SHAPE_T      2
-#define TETRIS_SHAPE_SQUARE 3
+#define TETRIS_SHAPE_FREDDY     0
+#define TETRIS_SHAPE_L          1
+#define TETRIS_SHAPE_T          2
+#define TETRIS_SHAPE_SQUARE     3
 #define TETRIS_SHAPE_STICK      4
+#define TETRIS_SHAPE_MINISQUARE 5
 
 
 
@@ -44,66 +45,71 @@ public:
     vector<Cuadrito> cuadritos;
     vector<Point> posiciones;
     Pieza(){}
-    Pieza(int shape)
+    Pieza(int shape, int height)
     {
         switch (shape) {
             case TETRIS_SHAPE_FREDDY:
-                posiciones.push_back(Point(5, 9, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(4, 9, 5));
+                posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(6, 9, 5));
+                posiciones.push_back(Point(6, height, 5));
                 cuadritos.push_back(Cuadrito(Color(0, 1, 1, 1)));
-                posiciones.push_back(Point(5, 9, 4));
+                posiciones.push_back(Point(5, height, 4));
                 cuadritos.push_back(Cuadrito(Color(0, 0, 1, 1)));
-                posiciones.push_back(Point(5, 9, 6));
+                posiciones.push_back(Point(5, height, 6));
                 cuadritos.push_back(Cuadrito(Color(0, 1, 0, 1)));
-                posiciones.push_back(Point(5, 8, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 break;
-            
+                
             case TETRIS_SHAPE_L:
-                posiciones.push_back(Point(5, 9, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(4, 9, 5));
+                posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(6, 9, 5));
+                posiciones.push_back(Point(6, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(6, 9, 6));
+                posiciones.push_back(Point(6, height, 6));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
                 break;
                 
             case TETRIS_SHAPE_T:
-                posiciones.push_back(Point(5, 9, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(4, 9, 5));
+                posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(6, 9, 5));
+                posiciones.push_back(Point(6, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, 9, 6));
+                posiciones.push_back(Point(5, height, 6));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
                 break;
                 
             case TETRIS_SHAPE_SQUARE:
-                posiciones.push_back(Point(5, 9, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(4, 9, 5));
+                posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(4, 9, 6));
+                posiciones.push_back(Point(4, height, 6));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, 9, 6));
+                posiciones.push_back(Point(5, height, 6));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
                 break;
                 
             case TETRIS_SHAPE_STICK:
-                posiciones.push_back(Point(5, 9, 5));
+                posiciones.push_back(Point(5, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(4, 9, 5));
+                posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(3, 9, 5));
+                posiciones.push_back(Point(3, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, 9, 5));
+                posiciones.push_back(Point(2, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
+            
+            case TETRIS_SHAPE_MINISQUARE:
+                posiciones.push_back(Point(5, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 break;
                 
                 
@@ -148,6 +154,9 @@ public:
                 for(int z = 0; z < depth; z++)
                     ocupado[x][y][z] = false;
     }
+    
+    int getHeight(){ return height;}
+    
     bool estaOcupado(Pieza &pieza) {
         for(int i = 0; i < pieza.posiciones.size(); i++){
 
@@ -203,9 +212,16 @@ public:
     }
     void dibuja() {
         glColor3f(0, 0, 0);
-        glutWireCube(unitWidth * width);
+        
         glPushMatrix();
-        glTranslatef(-unitWidth * width / 2, -unitWidth * width / 2, -unitWidth * width / 2);
+        
+        glPushMatrix();
+        glScaled(1, ((double) height)/ ((double) width), 1);
+        glutWireCube(unitWidth * width);
+        glPopMatrix();
+        
+        
+        glTranslatef(-unitWidth * width / 2, -unitWidth * height / 2, -unitWidth * depth / 2);
         for(int x = 0; x < width; x++)
             for(int y = 0; y < height; y++)
                 for(int z = 0; z < depth; z++)
@@ -217,6 +233,7 @@ public:
                     }
         glPopMatrix();
     }
+    
 };
 
 
