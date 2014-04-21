@@ -23,13 +23,7 @@ static void display(void)
     gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
 
     
-    
-    char msg[156];
-    int cont=4;
-    
-    //Despliega el Score del juego
-    sprintf(msg,"%s%d", "  Contador=", cont);
-    draw3dString(GLUT_STROKE_MONO_ROMAN, msg, -1.0, 1.5, 0);
+
     glutSwapBuffers();
     
     
@@ -70,7 +64,7 @@ void tetrisLoop(int value)
     if (tetris.estaOcupado(piezaActual)) {
         piezaActual.mover(0, 1, 0);
         tetris.insertar(piezaActual);
-        piezaActual=Pieza(rand()%5);
+        piezaActual=Pieza(rand() % 5);
         
     }
         glutTimerFunc(500, tetrisLoop, 0);
@@ -90,7 +84,7 @@ void CBInit()
 
 void displayInit()
 {
-    srand(time(0));
+    srand((unsigned int) time(0));
     glEnable(GL_DEPTH_TEST);
     glShadeModel (GL_SMOOTH);
     glMatrixMode(GL_PROJECTION);

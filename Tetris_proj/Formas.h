@@ -5,7 +5,8 @@
 #define TETRIS_SHAPE_L      1
 #define TETRIS_SHAPE_T      2
 #define TETRIS_SHAPE_SQUARE 3
-#define TETRIS_SHAPE_X      4
+#define TETRIS_SHAPE_STICK      4
+
 
 
 #include <iostream>
@@ -94,14 +95,14 @@ public:
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
                 break;
                 
-            case TETRIS_SHAPE_X:
+            case TETRIS_SHAPE_STICK:
                 posiciones.push_back(Point(5, 9, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 posiciones.push_back(Point(4, 9, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(4, 9, 6));
+                posiciones.push_back(Point(3, 9, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, 9, 6));
+                posiciones.push_back(Point(2, 9, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
                 break;
                 

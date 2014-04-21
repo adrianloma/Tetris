@@ -91,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				3A847BFA18D98841002481BA /* main.cpp */,
-				3A2BFFBE18E1D59E00902E64 /* Formas.h */,
 				3A847C0618D98972002481BA /* bass.h */,
+				3A2BFFBE18E1D59E00902E64 /* Formas.h */,
 				3A847BFC18D98841002481BA /* Tetris_proj.1 */,
 				3A8A700118DB3D3800F757AE /* display.h */,
 				3A8A700218DB3D9000F757AE /* sound.h */,
@@ -243,7 +243,9 @@
 					"$(inherited)",
 					../,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.8;
 			};
 			name = Debug;
 		};
@@ -254,7 +256,9 @@
 					"$(inherited)",
 					../,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.8;
 			};
 			name = Release;
 		};

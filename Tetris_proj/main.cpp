@@ -18,6 +18,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <algorithm>
 #include "bass.h"
 
 
@@ -31,8 +32,12 @@ void endProg()
 
 
 
+
 #include "Formas.h"
-Tetris tetris(10, 10, 10, .2f);
+
+
+
+Tetris tetris(10, 20, 10, .2f);
 Pieza piezaActual(TETRIS_SHAPE_SQUARE);
 
 float rotacion=0.0f;
@@ -59,6 +64,10 @@ bool mover(Pieza &pieza, int x, int y, int z)
 
 void init()
 {
+    srand((unsigned int) time(0));
+
+    piezaActual=Pieza(rand() % 5);
+    
     CBInit(); //display callbacks init
     displayInit();
     soundInit();
