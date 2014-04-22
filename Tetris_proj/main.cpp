@@ -55,6 +55,32 @@ bool mover(Pieza &pieza, int x, int y, int z)
     return true;
 }
 
+bool rotateCW(Pieza &pieza)
+{
+    tetris.quitar(pieza);
+    pieza.rotateCW();
+    if (tetris.estaOcupado(pieza)) {
+        pieza.rotateCCW();
+        tetris.insertar(pieza);
+        return false;
+    }
+    tetris.insertar(pieza);
+    return true;
+}
+
+bool rotateCCW(Pieza &pieza)
+{
+    tetris.quitar(pieza);
+    pieza.rotateCCW();
+    if (tetris.estaOcupado(pieza)) {
+        pieza.rotateCW();
+        tetris.insertar(pieza);
+        return false;
+    }
+    tetris.insertar(pieza);
+    return true;
+}
+
 #include "display.h"
 #include "sound.h"
 #include "keyboard.h"

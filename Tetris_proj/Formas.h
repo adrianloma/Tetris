@@ -97,10 +97,10 @@ public:
                 break;
                 
             case TETRIS_SHAPE_STICK:
-                posiciones.push_back(Point(5, height, 5));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 posiciones.push_back(Point(4, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 posiciones.push_back(Point(3, height, 5));
                 cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
                 posiciones.push_back(Point(2, height, 5));
@@ -128,13 +128,32 @@ public:
             posiciones[i].z += z;
         }
     }
-    void rotateCW(bool x, bool y, bool z)
+    void rotateCW()
     {
-        //TODO
+        int offset_x=posiciones[0].x;
+        int offset_z=posiciones[0].z;
+        
+        for (int i=1; i < posiciones.size() ; i++) {
+            int tempx= posiciones[i].x - offset_x;
+            int tempz= posiciones[i].z - offset_z;
+            
+            posiciones[i].x= tempz + offset_x;
+            posiciones[i].z= tempx*-1 + offset_z;
+        }
+        
     }
-    void rotateCCW(bool x, bool y, bool z)
+    void rotateCCW()
     {
-        //TODO
+        int offset_x=posiciones[0].x;
+        int offset_z=posiciones[0].z;
+        
+        for (int i=1; i < posiciones.size() ; i++) {
+            int tempx= posiciones[i].x - offset_x;
+            int tempz= posiciones[i].z - offset_z;
+            
+            posiciones[i].x= tempz*-1 + offset_x;
+            posiciones[i].z= tempx + offset_z;
+        }
     }
 };
 

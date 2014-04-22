@@ -22,7 +22,6 @@ static void display(void)
     float z = 3*cos(rotacion);
     gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
 
-    
 
     glutSwapBuffers();
     

@@ -46,6 +46,14 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
         case 'E':
             endProg();
             break;
+        case ' ':
+            while (mover(piezaActual, 0, -1, 0)) {}
+            break;
+        case 'u':
+            rotateCW(piezaActual);
+            break;
+        case 'y':
+            rotateCCW(piezaActual);
         default:
             break;
     }
