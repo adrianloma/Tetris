@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		3A2BFFBE18E1D59E00902E64 /* Formas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Formas.h; sourceTree = "<group>"; };
+		3A78728D19095ACE0089AB68 /* title.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = title.h; sourceTree = "<group>"; };
 		3A847BF718D98841002481BA /* Tetris_proj */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tetris_proj; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A847BFA18D98841002481BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3A847BFC18D98841002481BA /* Tetris_proj.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = Tetris_proj.1; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 				3A8A700118DB3D3800F757AE /* display.h */,
 				3A8A700218DB3D9000F757AE /* sound.h */,
 				3A8A700318DB3E0E00F757AE /* keyboard.h */,
+				3A78728D19095ACE0089AB68 /* title.h */,
 			);
 			path = Tetris_proj;
 			sourceTree = "<group>";

@@ -1,10 +1,4 @@
-//
-//  keyboard.h
-//  Tetris_proj
-//
-//  Created by Adrian Lozano on 3/20/14.
-//  Copyright (c) 2014 Adrian Lozano. All rights reserved.
-//
+
 
 #ifndef Tetris_proj_keyboard_h
 #define Tetris_proj_keyboard_h
@@ -14,9 +8,8 @@
 
 
 void keyboardListener(unsigned char key, int mouseX, int mouseY)
-{  //CAMBIAR EL VALOR DE dirX y dirY dependiendo de la tecla que oprima el usuario
-    // activa la bandera de crecer para que la funcion myTimer crezca en una unidad la serpiente
-    //Debe funcionar para mayuscula y minuscula.
+{
+    
     switch (key)
     {
         case 'w':
@@ -49,11 +42,18 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
         case ' ':
             while (mover(piezaActual, 0, -1, 0)) {}
             break;
+        case 'y':
+            rotateCCW(piezaActual);
+            break;
         case 'u':
             rotateCW(piezaActual);
             break;
-        case 'y':
-            rotateCCW(piezaActual);
+        case 'h':
+            barrelCCW(piezaActual);
+            break;
+        case 'j':
+            barrelCW(piezaActual);
+            break;
         default:
             break;
     }

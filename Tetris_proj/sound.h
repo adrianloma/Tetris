@@ -1,10 +1,4 @@
-//
-//  sound.h
-//  Tetris_proj
-//
-//  Created by Adrian Lozano on 3/20/14.
-//  Copyright (c) 2014 Adrian Lozano. All rights reserved.
-//
+
 
 #ifndef Tetris_proj_sound_h
 #define Tetris_proj_sound_h

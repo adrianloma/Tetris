@@ -1,11 +1,3 @@
-//
-//  main.cpp
-//  Tetris_proj
-//
-//  Created by Adrian Lozano on 3/19/14.
-//  Copyright (c) 2014 Adrian Lozano. All rights reserved.
-//
-
 
 #ifdef __APPLE__
 #include <GLUT/glut.h>
@@ -81,6 +73,34 @@ bool rotateCCW(Pieza &pieza)
     return true;
 }
 
+bool barrelCW(Pieza &pieza)
+{
+    tetris.quitar(pieza);
+    pieza.barrelCW();
+    if (tetris.estaOcupado(pieza)) {
+        pieza.barrelCCW();
+        tetris.insertar(pieza);
+        return false;
+    }
+    tetris.insertar(pieza);
+    return true;
+}
+
+bool barrelCCW(Pieza &pieza)
+{
+    tetris.quitar(pieza);
+    pieza.barrelCCW();
+    if (tetris.estaOcupado(pieza)) {
+        pieza.barrelCW();
+        tetris.insertar(pieza);
+        return false;
+    }
+    tetris.insertar(pieza);
+    return true;
+}
+
+
+
 #include "display.h"
 #include "sound.h"
 #include "keyboard.h"
@@ -91,8 +111,6 @@ bool rotateCCW(Pieza &pieza)
 void init()
 {
     srand((unsigned int) time(0));
-
-    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight());
     
     CBInit(); //display callbacks init
     displayInit();

@@ -7,6 +7,7 @@
 #define TETRIS_SHAPE_SQUARE     3
 #define TETRIS_SHAPE_STICK      4
 #define TETRIS_SHAPE_MINISQUARE 5
+#define TETRIS_SHAPE_HUGESQUARE 6
 
 
 
@@ -112,6 +113,98 @@ public:
                 cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
                 break;
                 
+            case TETRIS_SHAPE_HUGESQUARE:
+                posiciones.push_back(Point(4, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 5));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 2));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 2));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 2));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 2));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 4));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 4));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 4));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 4));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 3));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 3));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 3));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 3));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 1));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 1));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 1));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 1));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                
+                posiciones.push_back(Point(4, height, 0));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 0));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 0));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 0));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 6));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 7));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 7));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 7));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 7));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 9));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 9));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 9));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 9));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                
+                posiciones.push_back(Point(4, height, 8));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(5, height, 8));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+                posiciones.push_back(Point(3, height, 8));
+                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+                posiciones.push_back(Point(2, height, 8));
+                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+                break;
                 
             default:
                 break;
@@ -155,6 +248,37 @@ public:
             posiciones[i].z= tempx + offset_z;
         }
     }
+    
+    void barrelCW()
+    {
+        int offset_x=posiciones[0].x;
+        int offset_y=posiciones[0].y;
+        
+        for (int i=1; i < posiciones.size() ; i++) {
+            int tempx= posiciones[i].x - offset_x;
+            int tempy= posiciones[i].y - offset_y;
+            
+            posiciones[i].x= tempy + offset_x;
+            posiciones[i].y= tempx*-1 + offset_y;
+        }
+        
+    }
+    
+    void barrelCCW()
+    {
+        int offset_x=posiciones[0].x;
+        int offset_y=posiciones[0].y;
+        
+        for (int i=1; i < posiciones.size() ; i++) {
+            int tempx= posiciones[i].x - offset_x;
+            int tempy= posiciones[i].y - offset_y;
+            
+            posiciones[i].x= tempy*-1 + offset_x;
+            posiciones[i].y= tempx + offset_y;
+        }
+        
+    }
+    
 };
 
 #define MAX_LENGTH 25
@@ -165,7 +289,9 @@ private:
     bool ocupado[MAX_LENGTH][MAX_LENGTH][MAX_LENGTH];
     int width, height, depth;
     float unitWidth;
+    
 public:
+    
     Tetris(int width, int height, int depth, float unitWidth) : width(width), height(height), depth(depth), unitWidth(unitWidth)
     {
         for(int x = 0; x < width; x++)
@@ -192,23 +318,31 @@ public:
         }
         return false;
     }
+    
     void insertar(Pieza &pieza) {
         for(int i = 0; i < pieza.cuadritos.size(); i++) {
             matriz[pieza.posiciones[i].x][pieza.posiciones[i].y][pieza.posiciones[i].z] = pieza.cuadritos[i];
             ocupado[pieza.posiciones[i].x][pieza.posiciones[i].y][pieza.posiciones[i].z] = true;
         }
     }
+    
     void quitar(Pieza &pieza) {
         for(int i = 0; i < pieza.posiciones.size(); i++)
             ocupado[pieza.posiciones[i].x][pieza.posiciones[i].y][pieza.posiciones[i].z] = false;
     }
+    
     bool nivelCompleto(int nivel) {
-        for(int x = 0; x < width; x++)
-            for(int z = 0; z < depth; z++)
-                if(!ocupado[x][nivel][z])
+        for(int x = 0; x < width; x++){
+            for(int z = 0; z < depth; z++){
+                if(!ocupado[x][nivel][z]){
                     return false;
+                }
+            }
+        }
+        
         return true;
     }
+    
     void checarCompletos() {
         for(int i = 0; i < height; i++) {
             if(nivelCompleto(i)) {
@@ -225,8 +359,9 @@ public:
                         }
                     }
                 }
+                i--;
             }
-            i--;
+            
         }
     }
     void dibuja() {
@@ -247,13 +382,25 @@ public:
                     if(ocupado[x][y][z]) {
                         glPushMatrix();
                         glTranslatef(x * unitWidth, y * unitWidth, z * unitWidth);
-                        matriz[x][y][z].dibuja(unitWidth);
+                        glColor3f(1.0/height * y, 1.0/width * x, 1.0/depth * z);
+                        //glColor3f(.5, .5, .5);
+                        glTranslatef(unitWidth / 2, unitWidth / 2, unitWidth / 2);
+                        glutSolidCube(unitWidth);
+                        //matriz[x][y][z].dibuja(unitWidth);
                         glPopMatrix();
                     }
         glPopMatrix();
     }
     
 };
+
+
+
+
+
+
+
+
 
 
 
