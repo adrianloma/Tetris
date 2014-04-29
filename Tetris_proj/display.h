@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
 
 int estado = INICIO;
@@ -23,12 +24,17 @@ void escribirCentrado(string mensaje, float x, float y)
     }
 }
 
+void luces(){
+
+}
+
 static void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     if(estado == INICIO)
     {
+        glClearColor(.5, .5 , 1.0 ,1);
         glColor3f(0, 0, 0);
         escribirCentrado("TETRIS", 0, 0);
         escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
@@ -36,6 +42,7 @@ static void display(void)
         escribirCentrado("Presiona J para jugar.", 0, -.5);
     } else if(estado == JUEGO)
     {
+        luces();
         tetris.dibuja();
     
         //glMatrixMode(GL_MODELVIEW);
@@ -57,18 +64,7 @@ static void display(void)
     }
 
     glutSwapBuffers();
-}
 
-void draw3dString (void *font, char *s, float x, float y, float z) {
-    unsigned int i;
-    glPushMatrix();
-    glTranslatef(x, y, z);
-    glColor3f(1.0, 0, 0);
-    glScaled(5, 5, 5);
-    //glRotatef(xMin, 1, 1, 0);
-    for (i = 0; s[i] != '\0'; i++)
-        glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, s[i]);
-    glPopMatrix();
 }
 
 void reshape (int w, int h)
@@ -125,41 +121,31 @@ void CBInit()
 
 void init3d()
 {
+    glClearColor(.3, 0.2 , 0.8 ,1);
     glEnable(GL_DEPTH_TEST);
-    glShadeModel (GL_SMOOTH);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glFrustum(-1, 1, -1, 1, 1, 10);
     glMatrixMode(GL_MODELVIEW);
     //gluLookAt(0.0f, .3f, 0.0, 0, 0, 0, 0.0, 1, 0.0);
     glutTimerFunc(300, tetrisLoop, 0);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glShadeModel(GL_SMOOTH);
-    glEnable(GL_DEPTH_TEST); //para eliminar las caras ocultas
-    glEnable(GL_NORMALIZE);
+
     /*
      ####### LUCES #######
      */
-    GLfloat position[] = {
-                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 4.0),
-                        static_cast<GLfloat>(tetris.getHeight()),
-                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 4.0), 0.0};
-    //luz direccional
-//    GLfloat position[]=
-//    {
-//        0.1f, 3.0f, 0.1f
-//    };
     
-    GLfloat lightIntensity[] = {0.7f, 0.7f, 0.7f, 1.0f};
-    glLightfv(GL_LIGHT0, GL_DIFFUSE,lightIntensity);
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
-    GLfloat direction[ ] = {(GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0),
-                            0.0,
-                            (GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0)};
-    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
-    GLfloat thetaLight = 45.0;
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, thetaLight);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+    glEnable(GL_LIGHT2);
+    glShadeModel(GL_SMOOTH);
+    glEnable(GL_DEPTH_TEST); //para eliminar las caras ocultas
+    glEnable(GL_NORMALIZE);
+    glEnable(GL_AUTO_NORMAL);
+    
+
+    
+    
     score = 0;
     rotacion = 0;
     vista = 1;
@@ -210,7 +196,8 @@ void displayInit()
     glutDisplayFunc(display);
     srand((unsigned int) time(0));
     initMenu();
-    glClearColor(1.0,1.0,1.0,1);
+    glClearColor(.5, .5 , 1.0 ,1);
+
 }
 
 #endif
