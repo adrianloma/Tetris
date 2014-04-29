@@ -8,7 +8,7 @@
 const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
 
 int estado = INICIO;
-bool pausado = false;
+bool pausado = false, terminar = false;
 int score;
 
 int vista;
@@ -37,6 +37,19 @@ static void display(void)
     } else if(estado == JUEGO)
     {
         tetris.dibuja();
+        
+        string sc = "";
+        int s = score;
+        if(!s)
+        {
+            sc = "0";
+        }
+        while(s)
+        {
+            sc = string(1, (char)(s%10 + '0')) + sc;
+            s /= 10;
+        }
+        escribirCentrado("Puntaje: " + sc, 1.5, .75);
     
         //glMatrixMode(GL_MODELVIEW);
 
@@ -87,6 +100,12 @@ void tetrisLoop(int value)
     {
         return;
     }
+    
+    if(terminar)
+    {
+        terminar = false;
+        return;
+    }
     glutPostRedisplay();
     tetris.quitar(piezaActual);
     piezaActual.mover(0, -1, 0);
@@ -106,6 +125,8 @@ void tetrisLoop(int value)
         int niveles = tetris.checarCompletos();
         if(niveles)
         {
+            glDisable(GL_LIGHTING);
+            glDisable(GL_LIGHT0);
             score += niveles*(100 + time(NULL)%100);
             cout << score << endl;
         }
@@ -160,15 +181,11 @@ void init3d()
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
     GLfloat thetaLight = 45.0;
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, thetaLight);
-    score = 0;
+    score = 127;
     rotacion = 0;
     vista = 1;
     tetris = Tetris(5, 20, 5, .2f);
-    score = 0;
-    rotacion = 0;
-    vista = 1;
-    tetris = Tetris(5, 20, 5, .2f);
-    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
+    piezaActual = Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
 }
 
@@ -178,6 +195,7 @@ void menu(int opcion) {
 	switch(opcion) {
         case REINICIAR:
             init3d();
+            terminar = true;
             break;
         case PAUSA:
             pausado = true;
