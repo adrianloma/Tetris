@@ -387,6 +387,24 @@ public:
         glutSolidCube(unitWidth * width);
         glPopMatrix();
         
+//        GLfloat ambient[ ] = {0.2, 0.2, 0.2, 1.0};
+//        GLfloat diffuse[ ] = {1.0, 0.0, 0.0,  1.0  };
+//        GLfloat specular[ ] = {1.0, 1.0, 1.0, 1.0};
+//        
+//        GLfloat shine = 100.0;
+//        
+//        
+//        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+//        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+//        glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+//
+//        glMaterialf(GL_FRONT, GL_SHININESS, shine);
+        
+        
+        
+        GLfloat specular[ ] = {0.2, 0.2, 0.2, 1.0};
+        GLfloat shine = 10.0;
+        
         glTranslatef(-unitWidth * width / 2, -unitWidth * height / 2, -unitWidth * depth / 2);
         for(int x = 0; x < width; x++)
             for(int y = 0; y < height; y++)
@@ -394,7 +412,26 @@ public:
                     if(ocupado[x][y][z]) {
                         glPushMatrix();
                         glTranslatef(x * unitWidth, y * unitWidth, z * unitWidth);
-                        glColor3f(1.0/height * y, 1.0/width * x, 1.0/depth * z);
+                        
+                        GLfloat diffuse[ ] = {1.0f / height * y,
+                                            1.0f / height * x,
+                                            1.0f / height * y,
+                                            1.0  };
+//                        GLfloat specular[ ] = {1.0f / height * y /2 ,
+//                                            1.0f / height * x /2,
+//                                            1.0f / height * y /2,
+//                                            1.0};
+                        GLfloat ambient[ ] = {1.0f / height * y /2 ,
+                                            1.0f / height * x /2,
+                                            1.0f / height * y /2,
+                                            1.0};
+                        
+                        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+                        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+                        glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+                        
+                        glMaterialf(GL_FRONT, GL_SHININESS, shine);
+
                         //glColor3f(.5, .5, .5);
                         glTranslatef(unitWidth / 2, unitWidth / 2, unitWidth / 2);
                         glutSolidCube(unitWidth);

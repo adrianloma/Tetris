@@ -18,11 +18,11 @@ static void display(void)
     //glMatrixMode(GL_MODELVIEW);
 
     glLoadIdentity();
-    float x = 3*sin(rotacion);
-    float z = 3*cos(rotacion);
-    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+//    float x = 3*sin(rotacion);
+//    float z = 3*cos(rotacion);
+//    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
     
-//    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
 
 
     
@@ -102,10 +102,14 @@ void displayInit()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glShadeModel(GL_SMOOTH);
-    GLfloat position[] = {
-                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
-                        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
-                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
+//    GLfloat position[] = {
+//                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
+//                        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
+//                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
+    GLfloat position[]=
+    {
+        0.0f, .5f, 0.5f
+    };
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     
 
