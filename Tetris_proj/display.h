@@ -136,11 +136,34 @@ void init3d()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glShadeModel(GL_SMOOTH);
+    glEnable(GL_DEPTH_TEST); //para eliminar las caras ocultas
+    glEnable(GL_NORMALIZE);
+    /*
+     ####### LUCES #######
+     */
     GLfloat position[] = {
-        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
-        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
-        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
+                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 4.0),
+                        static_cast<GLfloat>(tetris.getHeight()),
+                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 4.0), 0.0};
+    //luz direccional
+//    GLfloat position[]=
+//    {
+//        0.1f, 3.0f, 0.1f
+//    };
+    
+    GLfloat lightIntensity[] = {0.7f, 0.7f, 0.7f, 1.0f};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE,lightIntensity);
     glLightfv(GL_LIGHT0, GL_POSITION, position);
+    GLfloat direction[ ] = {(GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0),
+                            0.0,
+                            (GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0)};
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
+    GLfloat thetaLight = 45.0;
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, thetaLight);
+    score = 0;
+    rotacion = 0;
+    vista = 1;
+    tetris = Tetris(5, 20, 5, .2f);
     score = 0;
     rotacion = 0;
     vista = 1;
