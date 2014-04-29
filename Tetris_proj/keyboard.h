@@ -9,15 +9,31 @@
 
 void keyboardListener(unsigned char key, int mouseX, int mouseY)
 {
-    if(estado == INICIO || estado == FINAL) {
+    if(estado == INICIO || estado == FINAL ) {
         switch (key)
         {
             case 'j':
                 estado = JUEGO;
                 init3d();
                 break;
+            case 'i':
+                estado = CONTROLES;
+                glutPostRedisplay();
+                break;
         }
-    } else if(estado == JUEGO) {
+    } else if(estado == CONTROLES) {
+        switch (key)
+        {
+            case 'j':
+                estado = JUEGO;
+                init3d();
+                break;
+            case 'v':
+                estado = INICIO;
+                glutPostRedisplay();
+                break;
+        }
+    }else if(estado == JUEGO) {
         switch (key)
         {
             case 'w':

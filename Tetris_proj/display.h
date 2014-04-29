@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
+const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3, CONTROLES = 4;
 
 int estado = INICIO;
 bool pausado = false, terminar = false;
@@ -33,7 +33,8 @@ static void display(void)
         escribirCentrado("TETRIS", 0, 0);
         escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
         escribirCentrado("Alfredo Altamirano    A01191157", 0, -.3);
-        escribirCentrado("Presiona J para jugar.", 0, -.5);
+        escribirCentrado("Presiona j para jugar.", 0, -.5);
+        escribirCentrado("Presiona i para ver los controles.", 0, -.7);
     } else if(estado == JUEGO)
     {
         tetris.dibuja();
@@ -66,7 +67,27 @@ static void display(void)
     } else if (estado == FINAL) {
         glColor3f(0, 0, 0);
         escribirCentrado("GAME OVER", 0, 0);
-        escribirCentrado("Presiona J para volver a jugar.", 0, -.5);
+        escribirCentrado("Presiona j para volver a jugar.", 0, -.5);
+    } else if (estado == CONTROLES) {
+        glColor3f(0, 0, 0);
+        escribirCentrado("Controles", 0, .9);
+        escribirCentrado("a - rotar la vista a la izquierda (solo con la vista 1)", 0, .7);
+        escribirCentrado("d - rotar la vista a la derecha (solo con la vista 1)", 0, .6);
+        escribirCentrado("s - detener la musica", 0, .5);
+        escribirCentrado("p - pausar la musica", 0, .4);
+        escribirCentrado("P - resumir la musica", 0, .3);
+        escribirCentrado("r - reiniciar la musica", 0, .2);
+        escribirCentrado("E - salir", 0, .1);
+        escribirCentrado("SPACE - mover la pieza hasta abajo", 0, 0);
+        escribirCentrado("y - rotar ???", 0, -.1);
+        escribirCentrado("u - rotar ???", 0, -.2);
+        escribirCentrado("h - rotar ???", 0, -.3);
+        escribirCentrado("j - rotar ???", 0, -.4);
+        escribirCentrado("1 - cambiar a la vista 1", 0, -.5);
+        escribirCentrado("2 - cambiar a la vista 2", 0, -.6);
+        escribirCentrado("Presiona v para volver.", 0, -.8);
+
+
     }
 
     glutSwapBuffers();
