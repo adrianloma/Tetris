@@ -9,53 +9,62 @@
 
 void keyboardListener(unsigned char key, int mouseX, int mouseY)
 {
-    
-    switch (key)
-    {
-        case 'w':
-            //rotacion
-            break;
-        case 'a':
-            rotacion-=.1;
-            glutPostRedisplay();
-            break;
-        case 'd':
-            rotacion+=.1;
-            glutPostRedisplay();
-            break;
-        case 's':
-            BASS_Stop();
-            break;
-        case 'p':
-            BASS_Pause();
-            break;
-        case 'P':
-            BASS_Start();
-            break;
-        case 'r':
-            BASS_Start();
-            BASS_ChannelPlay(music, true);
-            break;
-        case 'E':
-            endProg();
-            break;
-        case ' ':
-            while (mover(piezaActual, 0, -1, 0)) {}
-            break;
-        case 'y':
-            rotateCCW(piezaActual);
-            break;
-        case 'u':
-            rotateCW(piezaActual);
-            break;
-        case 'h':
-            barrelCCW(piezaActual);
-            break;
-        case 'j':
-            barrelCW(piezaActual);
-            break;
-        default:
-            break;
+    if(estado == INICIO) {
+        switch (key)
+        {
+            case 'j':
+                estado = JUEGO;
+                init3d();
+                break;
+        }
+    } else if(estado == JUEGO) {
+        switch (key)
+        {
+            case 'w':
+                //rotacion
+                break;
+            case 'a':
+                rotacion-=.1;
+                glutPostRedisplay();
+                break;
+            case 'd':
+                rotacion+=.1;
+                glutPostRedisplay();
+                break;
+            case 's':
+                BASS_Stop();
+                break;
+            case 'p':
+                BASS_Pause();
+                break;
+            case 'P':
+                BASS_Start();
+                break;
+            case 'r':
+                BASS_Start();
+                BASS_ChannelPlay(music, true);
+                break;
+            case 'E':
+                endProg();
+                break;
+            case ' ':
+                while (mover(piezaActual, 0, -1, 0)) {}
+                break;
+            case 'y':
+                rotateCCW(piezaActual);
+                break;
+            case 'u':
+                rotateCW(piezaActual);
+                break;
+            case 'h':
+                barrelCCW(piezaActual);
+                break;
+            case 'j':
+                barrelCW(piezaActual);
+                break;
+            default:
+                break;
+        }
     }
 }
 

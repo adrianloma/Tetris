@@ -5,7 +5,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+const int INICIO = 0, JUEGO = 1, FINAL = 2;
 
+int estado = INICIO;
 
 void draw3dString (void *font, char *s, float x, float y, float z) ;
 
@@ -13,20 +15,32 @@ static void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    tetris.dibuja();
+    if(estado == INICIO)
+    {
+        string mensaje = "Tetris";
+        glColor3f(0, 0, 0);
+        glRasterPos2i(0, 0);
+        for(int i = 0; i < mensaje.length(); i++) {
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
+        }
+
+    } else if(estado == JUEGO)
+    {
+        tetris.dibuja();
     
-    //glMatrixMode(GL_MODELVIEW);
+        //glMatrixMode(GL_MODELVIEW);
 
-    glLoadIdentity();
-    float x = 3*sin(rotacion);
-    float z = 3*cos(rotacion);
-    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+        glLoadIdentity();
+        float x = 3*sin(rotacion);
+        float z = 3*cos(rotacion);
+        gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
     
-//    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
-
+        //gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+        
+    }
 
     
-
+    
 
     glutSwapBuffers();
     
@@ -45,8 +59,6 @@ void draw3dString (void *font, char *s, float x, float y, float z) {
         glutStrokeCharacter(GLUT_STROKE_MONO_ROMAN, s[i]);
     glPopMatrix();
 }
-
-
 
 void reshape (int w, int h)
 {
@@ -84,10 +96,8 @@ void CBInit()
     glutCreateWindow("Tetris");
 }
 
-void displayInit()
+void init3d()
 {
-    glutDisplayFunc(display);
-    srand((unsigned int) time(0));
     glEnable(GL_DEPTH_TEST);
     glShadeModel (GL_SMOOTH);
     glMatrixMode(GL_PROJECTION);
@@ -95,20 +105,51 @@ void displayInit()
     glFrustum(-1, 1, -1, 1, 1, 10);
     glMatrixMode(GL_MODELVIEW);
     //gluLookAt(0.0f, .3f, 0.0, 0, 0, 0, 0.0, 1, 0.0);
-    glClearColor(1.0,1.0,1.0,1);
-    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
-    tetris.insertar(piezaActual);
     glutTimerFunc(300, tetrisLoop, 0);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glShadeModel(GL_SMOOTH);
     GLfloat position[] = {
-                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
-                        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
-                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
+        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
+        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
+        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, position);
-    
+    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
+    tetris.insertar(piezaActual);
+}
 
+const int REINICIAR = 0, PAUSA = 1, RESUMIR = 2;
+
+void menu(int opcion) {
+	switch(opcion) {
+        case REINICIAR:
+            break;
+        case PAUSA:
+            break;
+        case RESUMIR:
+            break;
+    }
+	glutPostRedisplay();
+}
+
+void initMenu()
+{
+    int menuPrincipal;
+    
+	menuPrincipal = glutCreateMenu(menu);
+	glutAddMenuEntry("Reiniciar", REINICIAR);
+	glutAddMenuEntry("Pausa", PAUSA);
+	glutAddMenuEntry("Resumir", RESUMIR);
+    
+	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+void displayInit()
+{
+    glutDisplayFunc(display);
+    srand((unsigned int) time(0));
+    initMenu();
+    glClearColor(1.0,1.0,1.0,1);
 }
 
 #endif
