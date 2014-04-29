@@ -12,6 +12,7 @@
 #include <iostream>
 #include <algorithm>
 #include "bass.h"
+//#include "title.h"
 
 
 void endProg()
@@ -29,8 +30,8 @@ void endProg()
 
 #define MAX_SHAPES 6
 
-Tetris tetris(10, 20, 10, .2f);
-Pieza piezaActual(TETRIS_SHAPE_SQUARE, tetris.getHeight());
+Tetris tetris(5, 20, 5, .2f);
+Pieza piezaActual(TETRIS_SHAPE_SQUARE, tetris.getHeight(),  tetris.getWidth(), tetris.getDepth());
 
 float rotacion=0.0f;
 
@@ -114,6 +115,7 @@ void init()
     
     CBInit(); //display callbacks init
     displayInit();
+    //titleInit();
     soundInit();
     KBinit();
     

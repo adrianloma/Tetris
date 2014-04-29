@@ -20,8 +20,12 @@ static void display(void)
     glLoadIdentity();
     float x = 3*sin(rotacion);
     float z = 3*cos(rotacion);
-    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
-    //gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+    
+//    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+
+
+    
 
 
     glutSwapBuffers();
@@ -63,7 +67,7 @@ void tetrisLoop(int value)
     if (tetris.estaOcupado(piezaActual)) {
         piezaActual.mover(0, 1, 0);
         tetris.insertar(piezaActual);
-        piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight());
+        piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
         //piezaActual=Pieza(TETRIS_SHAPE_HUGESQUARE, tetris.getHeight());
         tetris.checarCompletos();
     }
@@ -78,12 +82,11 @@ void CBInit()
     glutInitWindowPosition(10,10);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
     glutCreateWindow("Tetris");
-    glutDisplayFunc(display);
-
 }
 
 void displayInit()
 {
+    glutDisplayFunc(display);
     srand((unsigned int) time(0));
     glEnable(GL_DEPTH_TEST);
     glShadeModel (GL_SMOOTH);
@@ -93,12 +96,19 @@ void displayInit()
     glMatrixMode(GL_MODELVIEW);
     //gluLookAt(0.0f, .3f, 0.0, 0, 0, 0, 0.0, 1, 0.0);
     glClearColor(1.0,1.0,1.0,1);
-    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight());
+    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
     glutTimerFunc(300, tetrisLoop, 0);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glShadeModel(GL_SMOOTH);
+    GLfloat position[] = {
+                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
+                        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
+                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
+    glLightfv(GL_LIGHT0, GL_POSITION, position);
+    
 
 }
-
-
 
 #endif
