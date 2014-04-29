@@ -30,6 +30,10 @@ static void display(void)
     
     if(estado == INICIO)
     {
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glutSolidSphere(2, 10, 10);
+        glDisable(GL_TEXTURE_2D);
         glColor3f(0, 0, 0);
         escribirCentrado("TETRIS", 0, 0);
         escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
