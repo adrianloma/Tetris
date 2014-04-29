@@ -31,16 +31,27 @@ static void display(void)
     } else if(estado == JUEGO)
     {
         tetris.dibuja();
-    }
     
         //glMatrixMode(GL_MODELVIEW);
 
-    glLoadIdentity();
-//    float x = 3*sin(rotacion);
-//    float z = 3*cos(rotacion);
-//    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
-    
-    gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+        glLoadIdentity();
+        if(vista == 1)
+        {
+            float x = 3*sin(rotacion);
+            float z = 3*cos(rotacion);
+            gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+        } else if(vista == 2)
+        {
+            gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+        }
+    } else if (estado == FINAL) {
+        string mensaje = "Presiona J para volver a jugar.";
+        glColor3f(0, 0, 0);
+        glRasterPos2i(0, 0);
+        for(int i = 0; i < mensaje.length(); i++) {
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
+        }
+    }
 
     
     
@@ -131,7 +142,9 @@ void init3d()
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST); //para eliminar las caras ocultas
     glEnable(GL_NORMALIZE);
-    
+    /*
+     ####### LUCES #######
+     */
     GLfloat position[] = {
                         static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 4.0),
                         static_cast<GLfloat>(tetris.getHeight()),
@@ -144,7 +157,6 @@ void init3d()
     
     GLfloat lightIntensity[] = {0.7f, 0.7f, 0.7f, 1.0f};
     glLightfv(GL_LIGHT0, GL_DIFFUSE,lightIntensity);
-
     glLightfv(GL_LIGHT0, GL_POSITION, position);
     GLfloat direction[ ] = {(GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0),
                             0.0,
@@ -152,6 +164,14 @@ void init3d()
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
     GLfloat thetaLight = 45.0;
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, thetaLight);
+    score = 0;
+    rotacion = 0;
+    vista = 1;
+    tetris = Tetris(5, 20, 5, .2f);
+    score = 0;
+    rotacion = 0;
+    vista = 1;
+    tetris = Tetris(5, 20, 5, .2f);
     piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
 }
