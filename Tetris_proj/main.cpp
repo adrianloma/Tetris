@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <algorithm>
+#include "ImageLoader.h"
 #include "bass.h"
 //#include "title.h"
 

@@ -10,6 +10,7 @@ const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3, CONTROLES = 4;
 int estado = INICIO;
 bool pausado = false, terminar = false;
 int score;
+GLuint texture;
 
 int vista;
 
@@ -86,7 +87,6 @@ static void display(void)
         escribirCentrado("1 - cambiar a la vista 1", 0, -.5);
         escribirCentrado("2 - cambiar a la vista 2", 0, -.6);
         escribirCentrado("Presiona v para volver.", 0, -.8);
-
 
     }
 
@@ -244,12 +244,37 @@ void initMenu()
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
+void initTextures()
+{
+    Image* image;
+    
+    image = loadBMP("/Users/alfredo_altamirano/Documents/Tetris/Tetris/textures/textura.jpg");
+
+    
+    glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL which texture to edit
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    //Map the image to the texture
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+    
+    delete image;
+}
+
 void displayInit()
 {
     glutDisplayFunc(display);
     srand((unsigned int) time(0));
     initMenu();
     glClearColor(1.0,1.0,1.0,1);
+    initTextures();
 }
 
 #endif
