@@ -30,6 +30,7 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
                 break;
             case 'v':
                 estado = INICIO;
+                glutTimerFunc(10, rotacionTextura, 0);
                 glutPostRedisplay();
                 break;
         }

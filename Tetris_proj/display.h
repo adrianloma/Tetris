@@ -11,6 +11,7 @@ const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3, CONTROLES = 4;
 int estado = INICIO;
 bool pausado = false, terminar = false;
 int score;
+int angulo = 0;
 GLuint texture;
 
 int vista;
@@ -40,9 +41,15 @@ static void display(void)
         
         glColor3f(1.0f, 1.0f, 1.0f);
         
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
         glPushMatrix();
-        glTranslatef(0, .5, 0);
-        glScalef(2.2, 3, 1);
+        glRotatef(angulo, 0.0, 0.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+        
+        glPushMatrix();
+        glTranslatef(0, 0, 0);
+        glScalef(12*1.178, 12, 1);
         
         glBegin(GL_QUADS);
         glTexCoord2f(0.0f, 0.0f);
@@ -59,6 +66,10 @@ static void display(void)
         glEnd();
         
         glPopMatrix();
+        
+        glMatrixMode(GL_TEXTURE);
+        glPopMatrix();
+        glMatrixMode(GL_MODELVIEW);
         
         glDisable(GL_TEXTURE_2D);
 
@@ -134,6 +145,16 @@ void reshape (int w, int h)
     glOrtho(-1,1,-1,1, 2, 20);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity();
+}
+
+void rotacionTextura(int value)
+{
+    angulo = (angulo + 1) % 360;
+    if(estado == INICIO)
+    {
+        glutTimerFunc(30, rotacionTextura, 0);
+    }
+    glutPostRedisplay();
 }
 
 void tetrisLoop(int value)
@@ -295,6 +316,7 @@ void initTextures()
 void displayInit()
 {
     glutDisplayFunc(display);
+    glutTimerFunc(10, rotacionTextura, 0);
     srand((unsigned int) time(0));
     initMenu();
     glClearColor(.5, .5 , 1.0 ,1);
