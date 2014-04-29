@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-const int INICIO = 0, JUEGO = 1, FINAL = 2;
+const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
 
 int estado = INICIO;
 bool pausado = false;
@@ -15,19 +15,25 @@ int vista;
 
 void draw3dString (void *font, char *s, float x, float y, float z) ;
 
+void escribirCentrado(string mensaje, float x, float y)
+{
+    glRasterPos2f(x - .01 * (int)mensaje.length(), y);
+    for(int i = 0; i < mensaje.length(); i++) {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
+    }
+}
+
 static void display(void)
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     if(estado == INICIO)
     {
-        string mensaje = "Tetris";
         glColor3f(0, 0, 0);
-        glRasterPos2i(0, 0);
-        for(int i = 0; i < mensaje.length(); i++) {
-            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
-        }
-
+        escribirCentrado("TETRIS", 0, 0);
+        escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
+        escribirCentrado("Alfredo Altamirano    A01191157", 0, -.3);
+        escribirCentrado("Presiona J para jugar.", 0, -.5);
     } else if(estado == JUEGO)
     {
         tetris.dibuja();
@@ -45,22 +51,13 @@ static void display(void)
             gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
         }
     } else if (estado == FINAL) {
-        string mensaje = "Presiona J para volver a jugar.";
         glColor3f(0, 0, 0);
-        glRasterPos2i(0, 0);
-        for(int i = 0; i < mensaje.length(); i++) {
-            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
-        }
+        escribirCentrado("GAME OVER", 0, 0);
+        escribirCentrado("Presiona J para volver a jugar.", 0, -.5);
     }
 
-    
-    
-
     glutSwapBuffers();
-    
 }
-
-
 
 void draw3dString (void *font, char *s, float x, float y, float z) {
     unsigned int i;
@@ -76,13 +73,12 @@ void draw3dString (void *font, char *s, float x, float y, float z) {
 
 void reshape (int w, int h)
 {
-    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-    glMatrixMode (GL_PROJECTION);
-    glLoadIdentity ();
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
     glOrtho(-1,1,-1,1, 2, 20);
     glMatrixMode (GL_MODELVIEW);
-    glLoadIdentity() ;
-    
+    glLoadIdentity();
 }
 
 void tetrisLoop(int value)
@@ -190,6 +186,8 @@ void menu(int opcion) {
             pausado = false;
             glutTimerFunc(500, tetrisLoop, 0);
             break;
+        case SALIR:
+            endProg();
     }
 	glutPostRedisplay();
 }
@@ -202,6 +200,7 @@ void initMenu()
 	glutAddMenuEntry("Reiniciar", REINICIAR);
 	glutAddMenuEntry("Pausa", PAUSA);
 	glutAddMenuEntry("Resumir", RESUMIR);
+    glutAddMenuEntry("Salir", SALIR);
     
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
