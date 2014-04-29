@@ -350,7 +350,8 @@ public:
         return true;
     }
     
-    void checarCompletos() {
+    int checarCompletos() {
+        int ret = 0;
         for(int i = 0; i < height; i++) {
             if(nivelCompleto(i)) {
                 for(int j = i; j < height; j++) {
@@ -366,10 +367,12 @@ public:
                         }
                     }
                 }
+                ret++;
                 i--;
             }
             
         }
+        return ret;
     }
     void dibuja() {
         glColor3f(0, 0, 0);

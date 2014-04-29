@@ -8,6 +8,10 @@
 const int INICIO = 0, JUEGO = 1, FINAL = 2;
 
 int estado = INICIO;
+bool pausado = false;
+int score;
+
+int vista;
 
 void draw3dString (void *font, char *s, float x, float y, float z) ;
 
@@ -72,15 +76,32 @@ void reshape (int w, int h)
 
 void tetrisLoop(int value)
 {
+    if(pausado)
+    {
+        return;
+    }
     glutPostRedisplay();
     tetris.quitar(piezaActual);
     piezaActual.mover(0, -1, 0);
-    if (tetris.estaOcupado(piezaActual)) {
+    if (tetris.estaOcupado(piezaActual))
+    {
         piezaActual.mover(0, 1, 0);
         tetris.insertar(piezaActual);
         piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
+        piezaActual.mover(0, -1, 0);
+        if(tetris.estaOcupado(piezaActual))
+        {
+            estado = FINAL;
+            return;
+        }
+        piezaActual.mover(0, 1, 0);
         //piezaActual=Pieza(TETRIS_SHAPE_HUGESQUARE, tetris.getHeight());
-        tetris.checarCompletos();
+        int niveles = tetris.checarCompletos();
+        if(niveles)
+        {
+            score += niveles*(100 + time(NULL)%100);
+            cout << score << endl;
+        }
     }
     glutTimerFunc(500, tetrisLoop, 0);
     tetris.insertar(piezaActual);
@@ -140,10 +161,14 @@ const int REINICIAR = 0, PAUSA = 1, RESUMIR = 2;
 void menu(int opcion) {
 	switch(opcion) {
         case REINICIAR:
+            init3d();
             break;
         case PAUSA:
+            pausado = true;
             break;
         case RESUMIR:
+            pausado = false;
+            glutTimerFunc(500, tetrisLoop, 0);
             break;
     }
 	glutPostRedisplay();
