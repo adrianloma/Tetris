@@ -27,6 +27,7 @@ static void display(void)
     } else if(estado == JUEGO)
     {
         tetris.dibuja();
+    }
     
         //glMatrixMode(GL_MODELVIEW);
 
@@ -36,7 +37,6 @@ static void display(void)
 //    gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
     
     gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
-
 
     
     
@@ -108,15 +108,29 @@ void init3d()
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glShadeModel(GL_SMOOTH);
-//    GLfloat position[] = {
-//                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 2.0),
-//                        static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
-//                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
-    GLfloat position[]=
-    {
-        0.0f, .5f, 0.5f
-    };
+    glEnable(GL_DEPTH_TEST); //para eliminar las caras ocultas
+    glEnable(GL_NORMALIZE);
+    
+    GLfloat position[] = {
+                        static_cast<GLfloat>(tetris.getWidth() * tetris.getUnitWidth() / 4.0),
+                        static_cast<GLfloat>(tetris.getHeight()),
+                        static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 4.0), 0.0};
+    //luz direccional
+//    GLfloat position[]=
+//    {
+//        0.1f, 3.0f, 0.1f
+//    };
+    
+    GLfloat lightIntensity[] = {0.7f, 0.7f, 0.7f, 1.0f};
+    glLightfv(GL_LIGHT0, GL_DIFFUSE,lightIntensity);
+
     glLightfv(GL_LIGHT0, GL_POSITION, position);
+    GLfloat direction[ ] = {(GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0),
+                            0.0,
+                            (GLfloat)(tetris.getWidth()*tetris.getUnitWidth()/2.0)};
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, direction);
+    GLfloat thetaLight = 45.0;
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, thetaLight);
     piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
 }

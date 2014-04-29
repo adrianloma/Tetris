@@ -375,11 +375,20 @@ public:
         glColor3f(0, 0, 0);
         
         glPushMatrix();
+        GLfloat ambient1[ ] = {0.2, 0.2, 0.2, 1.0};
+        GLfloat diffuse1[ ] = {0.3, 0.3, 0.3,  1.0  };
+        GLfloat specular1[ ] = {0.5, 0.5, 0.5, 1.0};
+        
+        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient1);
+        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse1);
+        glMaterialfv(GL_FRONT, GL_SPECULAR, specular1);
         
         glPushMatrix();
         glScaled(1, ((double) height)/ ((double) width), 1);
         glutWireCube(unitWidth * width);
         glPopMatrix();
+        
+
         
         glPushMatrix();
         glTranslatef(0, -height/8, 0);
@@ -387,16 +396,12 @@ public:
         glutSolidCube(unitWidth * width);
         glPopMatrix();
         
-//        GLfloat ambient[ ] = {0.2, 0.2, 0.2, 1.0};
-//        GLfloat diffuse[ ] = {1.0, 0.0, 0.0,  1.0  };
-//        GLfloat specular[ ] = {1.0, 1.0, 1.0, 1.0};
-//        
+
+//
 //        GLfloat shine = 100.0;
 //        
 //        
-//        glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-//        glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-//        glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+
 //
 //        glMaterialf(GL_FRONT, GL_SHININESS, shine);
         
