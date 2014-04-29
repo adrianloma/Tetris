@@ -117,98 +117,98 @@ public:
                 cuadritos.push_back(Cuadrito(Color(1, 1 , 1, 1)));
                 break;
                 
-            case TETRIS_SHAPE_HUGESQUARE:
-                posiciones.push_back(Point(4, height, 5));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 5));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 5));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 5));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 2));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 2));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 2));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 2));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 4));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 4));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 4));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 4));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 3));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 3));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 3));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 3));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 1));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 1));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 1));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 1));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                
-                posiciones.push_back(Point(4, height, 0));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 0));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 0));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 0));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 6));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 6));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 6));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 6));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 7));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 7));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 7));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 7));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 9));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 9));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 9));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 9));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                
-                posiciones.push_back(Point(4, height, 8));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(5, height, 8));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
-                posiciones.push_back(Point(3, height, 8));
-                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
-                posiciones.push_back(Point(2, height, 8));
-                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
-                break;
+//            case TETRIS_SHAPE_HUGESQUARE:
+//                posiciones.push_back(Point(4, height, 5));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 5));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 5));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 5));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 2));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 2));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 2));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 2));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 4));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 4));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 4));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 4));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 3));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 3));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 3));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 3));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 1));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 1));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 1));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 1));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                
+//                posiciones.push_back(Point(4, height, 0));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 0));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 0));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 0));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 6));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 6));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 6));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 6));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 7));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 7));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 7));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 7));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 9));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 9));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 9));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 9));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                
+//                posiciones.push_back(Point(4, height, 8));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(5, height, 8));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 1, 1)));
+//                posiciones.push_back(Point(3, height, 8));
+//                cuadritos.push_back(Cuadrito(Color(1, 1, 0, 1)));
+//                posiciones.push_back(Point(2, height, 8));
+//                cuadritos.push_back(Cuadrito(Color(1, 0, 0, 1)));
+//                break;
                 
             default:
                 break;
