@@ -9,7 +9,7 @@
 
 void keyboardListener(unsigned char key, int mouseX, int mouseY)
 {
-    if(estado == INICIO) {
+    if(estado == INICIO || estado == FINAL) {
         switch (key)
         {
             case 'j':

@@ -8,6 +8,7 @@
 const int INICIO = 0, JUEGO = 1, FINAL = 2;
 
 int estado = INICIO;
+bool pausado = false;
 
 void draw3dString (void *font, char *s, float x, float y, float z) ;
 
@@ -36,7 +37,13 @@ static void display(void)
         gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
     
         //gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
-        
+    } else if (estado == FINAL) {
+        string mensaje = "Presiona J para volver a jugar.";
+        glColor3f(0, 0, 0);
+        glRasterPos2i(0, 0);
+        for(int i = 0; i < mensaje.length(); i++) {
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, mensaje[i]);
+        }
     }
 
     
@@ -73,13 +80,25 @@ void reshape (int w, int h)
 
 void tetrisLoop(int value)
 {
+    if(pausado)
+    {
+        return;
+    }
     glutPostRedisplay();
     tetris.quitar(piezaActual);
     piezaActual.mover(0, -1, 0);
-    if (tetris.estaOcupado(piezaActual)) {
+    if (tetris.estaOcupado(piezaActual))
+    {
         piezaActual.mover(0, 1, 0);
         tetris.insertar(piezaActual);
         piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
+        piezaActual.mover(0, -1, 0);
+        if(tetris.estaOcupado(piezaActual))
+        {
+            estado = FINAL;
+            return;
+        }
+        piezaActual.mover(0, 1, 0);
         //piezaActual=Pieza(TETRIS_SHAPE_HUGESQUARE, tetris.getHeight());
         tetris.checarCompletos();
     }
@@ -114,6 +133,7 @@ void init3d()
         static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
         static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, position);
+    tetris = Tetris(5, 20, 5, .2f);
     piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
 }
@@ -123,10 +143,14 @@ const int REINICIAR = 0, PAUSA = 1, RESUMIR = 2;
 void menu(int opcion) {
 	switch(opcion) {
         case REINICIAR:
+            init3d();
             break;
         case PAUSA:
+            pausado = true;
             break;
         case RESUMIR:
+            pausado = false;
+            glutTimerFunc(500, tetrisLoop, 0);
             break;
     }
 	glutPostRedisplay();
