@@ -9,8 +9,9 @@
 const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
 
 int estado = INICIO;
-bool pausado = false;
+bool pausado = false, terminar = false;
 int score;
+GLuint texture;
 
 int vista;
 
@@ -39,11 +40,25 @@ static void display(void)
         escribirCentrado("TETRIS", 0, 0);
         escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
         escribirCentrado("Alfredo Altamirano    A01191157", 0, -.3);
-        escribirCentrado("Presiona J para jugar.", 0, -.5);
+        escribirCentrado("Presiona j para jugar.", 0, -.5);
+        escribirCentrado("Presiona i para ver los controles.", 0, -.7);
     } else if(estado == JUEGO)
     {
         luces();
         tetris.dibuja();
+        
+        string sc = "";
+        int s = score;
+        if(!s)
+        {
+            sc = "0";
+        }
+        while(s)
+        {
+            sc = string(1, (char)(s%10 + '0')) + sc;
+            s /= 10;
+        }
+        escribirCentrado("Puntaje: " + sc, 1.5, .75);
     
         //glMatrixMode(GL_MODELVIEW);
 
@@ -60,7 +75,26 @@ static void display(void)
     } else if (estado == FINAL) {
         glColor3f(0, 0, 0);
         escribirCentrado("GAME OVER", 0, 0);
-        escribirCentrado("Presiona J para volver a jugar.", 0, -.5);
+        escribirCentrado("Presiona j para volver a jugar.", 0, -.5);
+    } else if (estado == CONTROLES) {
+        glColor3f(0, 0, 0);
+        escribirCentrado("Controles", 0, .9);
+        escribirCentrado("a - rotar la vista a la izquierda (solo con la vista 1)", 0, .7);
+        escribirCentrado("d - rotar la vista a la derecha (solo con la vista 1)", 0, .6);
+        escribirCentrado("s - detener la musica", 0, .5);
+        escribirCentrado("p - pausar la musica", 0, .4);
+        escribirCentrado("P - resumir la musica", 0, .3);
+        escribirCentrado("r - reiniciar la musica", 0, .2);
+        escribirCentrado("E - salir", 0, .1);
+        escribirCentrado("SPACE - mover la pieza hasta abajo", 0, 0);
+        escribirCentrado("y - rotar ???", 0, -.1);
+        escribirCentrado("u - rotar ???", 0, -.2);
+        escribirCentrado("h - rotar ???", 0, -.3);
+        escribirCentrado("j - rotar ???", 0, -.4);
+        escribirCentrado("1 - cambiar a la vista 1", 0, -.5);
+        escribirCentrado("2 - cambiar a la vista 2", 0, -.6);
+        escribirCentrado("Presiona v para volver.", 0, -.8);
+
     }
 
     glutSwapBuffers();
@@ -83,6 +117,12 @@ void tetrisLoop(int value)
     {
         return;
     }
+    
+    if(terminar)
+    {
+        terminar = false;
+        return;
+    }
     glutPostRedisplay();
     tetris.quitar(piezaActual);
     piezaActual.mover(0, -1, 0);
@@ -102,6 +142,8 @@ void tetrisLoop(int value)
         int niveles = tetris.checarCompletos();
         if(niveles)
         {
+            glDisable(GL_LIGHTING);
+            glDisable(GL_LIGHT0);
             score += niveles*(100 + time(NULL)%100);
             cout << score << endl;
         }
@@ -154,7 +196,7 @@ void init3d()
     rotacion = 0;
     vista = 1;
     tetris = Tetris(5, 20, 5, .2f);
-    piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
+    piezaActual = Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
 }
 
@@ -164,6 +206,7 @@ void menu(int opcion) {
 	switch(opcion) {
         case REINICIAR:
             init3d();
+            terminar = true;
             break;
         case PAUSA:
             pausado = true;
@@ -189,6 +232,30 @@ void initMenu()
     glutAddMenuEntry("Salir", SALIR);
     
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
+}
+
+void initTextures()
+{
+    Image* image;
+    
+    image = loadBMP("/Users/alfredo_altamirano/Documents/Tetris/Tetris/textures/textura.jpg");
+
+    
+    glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL which texture to edit
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    
+    
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    
+    //Map the image to the texture
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
+    
+    delete image;
 }
 
 void displayInit()

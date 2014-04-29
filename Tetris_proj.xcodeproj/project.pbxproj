@@ -52,6 +52,7 @@
 		3A8A700118DB3D3800F757AE /* display.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = display.h; sourceTree = "<group>"; };
 		3A8A700218DB3D9000F757AE /* sound.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sound.h; sourceTree = "<group>"; };
 		3A8A700318DB3E0E00F757AE /* keyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard.h; sourceTree = "<group>"; };
+		B5C2A37C190F939600E651E6 /* ImageLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageLoader.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +100,7 @@
 				3A8A700218DB3D9000F757AE /* sound.h */,
 				3A8A700318DB3E0E00F757AE /* keyboard.h */,
 				3A78728D19095ACE0089AB68 /* title.h */,
+				B5C2A37C190F939600E651E6 /* ImageLoader.h */,
 			);
 			path = Tetris_proj;
 			sourceTree = "<group>";
