@@ -24,12 +24,19 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
                 //rotacion
                 break;
             case 'a':
-                rotacion-=.1;
-                glutPostRedisplay();
+                if(vista == 1)
+                {
+                    rotacion-=.1;
+                    
+                    glutPostRedisplay();
+                }
                 break;
             case 'd':
-                rotacion+=.1;
-                glutPostRedisplay();
+                if(vista == 1)
+                {
+                    rotacion+=.1;
+                    glutPostRedisplay();
+                }
                 break;
             case 's':
                 BASS_Stop();
@@ -61,6 +68,12 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
                 break;
             case 'j':
                 barrelCW(piezaActual);
+                break;
+            case '1':
+                vista = 1;
+                break;
+            case '2':
+                vista = 2;
                 break;
             default:
                 break;

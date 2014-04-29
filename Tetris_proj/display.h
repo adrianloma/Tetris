@@ -9,6 +9,9 @@ const int INICIO = 0, JUEGO = 1, FINAL = 2;
 
 int estado = INICIO;
 bool pausado = false;
+int score;
+
+int vista;
 
 void draw3dString (void *font, char *s, float x, float y, float z) ;
 
@@ -32,11 +35,15 @@ static void display(void)
         //glMatrixMode(GL_MODELVIEW);
 
         glLoadIdentity();
-        float x = 3*sin(rotacion);
-        float z = 3*cos(rotacion);
-        gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
-    
-        //gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+        if(vista == 1)
+        {
+            float x = 3*sin(rotacion);
+            float z = 3*cos(rotacion);
+            gluLookAt(x, 0.3f, z, 0, 0, 0, 0.0, 1, 0.0);
+        } else if(vista == 2)
+        {
+            gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
+        }
     } else if (estado == FINAL) {
         string mensaje = "Presiona J para volver a jugar.";
         glColor3f(0, 0, 0);
@@ -100,7 +107,12 @@ void tetrisLoop(int value)
         }
         piezaActual.mover(0, 1, 0);
         //piezaActual=Pieza(TETRIS_SHAPE_HUGESQUARE, tetris.getHeight());
-        tetris.checarCompletos();
+        int niveles = tetris.checarCompletos();
+        if(niveles)
+        {
+            score += niveles*(100 + time(NULL)%100);
+            cout << score << endl;
+        }
     }
     glutTimerFunc(500, tetrisLoop, 0);
     tetris.insertar(piezaActual);
@@ -133,6 +145,9 @@ void init3d()
         static_cast<GLfloat>(tetris.getHeight() * tetris.getUnitWidth()),
         static_cast<GLfloat>(tetris.getDepth() *tetris.getUnitWidth() / 2.0), 1.0};
     glLightfv(GL_LIGHT0, GL_POSITION, position);
+    score = 0;
+    rotacion = 0;
+    vista = 1;
     tetris = Tetris(5, 20, 5, .2f);
     piezaActual=Pieza(rand() % MAX_SHAPES, tetris.getHeight(), tetris.getWidth(), tetris.getDepth());
     tetris.insertar(piezaActual);
