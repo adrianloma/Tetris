@@ -6,7 +6,7 @@
 #include <time.h>
 
 
-const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3;
+const int INICIO = 0, JUEGO = 1, FINAL = 2, SALIR = 3, CONTROLES = 4;
 
 int estado = INICIO;
 bool pausado = false, terminar = false;
@@ -37,9 +37,31 @@ static void display(void)
     {
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glutSolidSphere(2, 10, 10);
+        
+        glColor3f(1.0f, 1.0f, 1.0f);
+        
+        glPushMatrix();
+        glTranslatef(0, .5, 0);
+        glScalef(2.2, 3, 1);
+        
+        glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex2f(-1.0f/10, -1.0f/10);
+        
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex2f( 1.0f/10, -1.0f/10);
+        
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex2f( 1.0f/10, 1.0f/10);
+        
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex2f(-1.0f/10, 1.0f/10);
+        glEnd();
+        
+        glPopMatrix();
+        
         glDisable(GL_TEXTURE_2D);
-        glColor3f(0, 0, 0);
+
         escribirCentrado("TETRIS", 0, 0);
         escribirCentrado("Adrian Lozano    A00812725", 0, -.15);
         escribirCentrado("Alfredo Altamirano    A01191157", 0, -.3);
@@ -237,27 +259,36 @@ void initMenu()
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
 
-void initTextures()
+void loadTexture(Image* image)
 {
-    Image* image;
-    
-    image = loadBMP("/Users/alfredo_altamirano/Documents/Tetris/Tetris/textures/textura.jpg");
-
-    
+    glGenTextures(1, &texture); //Make room for our texture
     glBindTexture(GL_TEXTURE_2D, texture); //Tell OpenGL which texture to edit
     
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_NEAREST);
     
     
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
     
-    //Map the image to the texture
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image->width, image->height, 0, GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
-    
+    glTexImage2D(GL_TEXTURE_2D,                //Always GL_TEXTURE_2D
+                 0,                            //0 for now
+                 GL_RGB,                       //Format OpenGL uses for image
+                 image->width, image->height,  //Width and height
+                 0,                            //The border of the image
+                 GL_RGB, //GL_RGB, because pixels are stored in RGB format
+                 GL_UNSIGNED_BYTE, //GL_UNSIGNED_BYTE, because pixels are stored
+                 //as unsigned numbers
+                 image->pixels);               //The actual pixel data
+}
+
+void initTextures()
+{
+    glEnable(GL_TEXTURE_2D);
+    Image* image = loadBMP("/Users/alfredo_altamirano/Documents/Tetris/Tetris/textures/tetris.bmp");
+    loadTexture(image);
     delete image;
 }
 
@@ -267,7 +298,7 @@ void displayInit()
     srand((unsigned int) time(0));
     initMenu();
     glClearColor(.5, .5 , 1.0 ,1);
-
+    initTextures();
 }
 
 #endif
