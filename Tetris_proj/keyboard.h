@@ -56,7 +56,9 @@ void keyboardListener(unsigned char key, int mouseX, int mouseY)
                 }
                 break;
             case 's':
-                BASS_Stop();
+                BASS_Start();
+                BASS_ChannelPlay(music, true);
+                BASS_Pause();
                 break;
             case 'p':
                 BASS_Pause();

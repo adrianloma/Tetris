@@ -94,6 +94,9 @@ static void display(void)
             sc = string(1, (char)(s%10 + '0')) + sc;
             s /= 10;
         }
+        GLfloat whiteSpecularMaterial[] = {1.0, 1.0, 1.0};
+        glColor3f(1, 1, 1);
+        glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, whiteSpecularMaterial);
         escribirCentrado("Puntaje: " + sc, 1.5, .75);
     
         //glMatrixMode(GL_MODELVIEW);
@@ -109,6 +112,46 @@ static void display(void)
             gluLookAt(0.0f, 3.0f, 0.5, 0, 0, 0, 0.0, 1, 0.0);
         }
     } else if (estado == FINAL) {
+        
+
+        glDisable(GL_DEPTH_TEST);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        
+        glColor3f(1.0f, 1.0f, 1.0f);
+        
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
+        glPushMatrix();
+        glRotatef(360 - angulo, 0.0, 0.0, 1.0);
+        glMatrixMode(GL_MODELVIEW);
+        
+        glPushMatrix();
+        glTranslatef(0, 0, 0);
+        glScalef(40*1.178, 40, 1);
+        
+        glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f);
+        glVertex3f(-1.0f/10, -1.0f/10, -1);
+        
+        glTexCoord2f(1.0f, 0.0f);
+        glVertex3f( 1.0f/10, -1.0f/10, -1);
+        
+        glTexCoord2f(1.0f, 1.0f);
+        glVertex3f( 1.0f/10, 1.0f/10, -1);
+        
+        glTexCoord2f(0.0f, 1.0f);
+        glVertex3f(-1.0f/10, 1.0f/10, -1);
+        glEnd();
+        
+        glPopMatrix();
+        
+        glMatrixMode(GL_TEXTURE);
+        glPopMatrix();
+        glMatrixMode(GL_MODELVIEW);
+        
+        glDisable(GL_TEXTURE_2D);
+        
         glColor3f(0, 0, 0);
         escribirCentrado("GAME OVER", 0, 0);
         escribirCentrado("Presiona j para volver a jugar.", 0, -.5);
@@ -123,10 +166,10 @@ static void display(void)
         escribirCentrado("r - reiniciar la musica", 0, .2);
         escribirCentrado("E - salir", 0, .1);
         escribirCentrado("SPACE - mover la pieza hasta abajo", 0, 0);
-        escribirCentrado("y - rotar ???", 0, -.1);
-        escribirCentrado("u - rotar ???", 0, -.2);
-        escribirCentrado("h - rotar ???", 0, -.3);
-        escribirCentrado("j - rotar ???", 0, -.4);
+        escribirCentrado("y - rotar eje x CW", 0, -.1);
+        escribirCentrado("u - rotar eje x CCW", 0, -.2);
+        escribirCentrado("h - rotar eje y CW", 0, -.3);
+        escribirCentrado("j - rotar eje y CCW", 0, -.4);
         escribirCentrado("1 - cambiar a la vista 1", 0, -.5);
         escribirCentrado("2 - cambiar a la vista 2", 0, -.6);
         escribirCentrado("Presiona v para volver.", 0, -.8);
@@ -150,7 +193,7 @@ void reshape (int w, int h)
 void rotacionTextura(int value)
 {
     angulo = (angulo + 1) % 360;
-    if(estado == INICIO)
+    if(estado == INICIO || estado == FINAL)
     {
         glutTimerFunc(30, rotacionTextura, 0);
     }
@@ -180,6 +223,14 @@ void tetrisLoop(int value)
         piezaActual.mover(0, -1, 0);
         if(tetris.estaOcupado(piezaActual))
         {
+            glLoadIdentity();
+            gluLookAt(0, 0, 3, 0, 0, 0, 0.0, 1, 0.0);
+            glutTimerFunc(10, rotacionTextura, 0);
+            glDisable(GL_DEPTH_TEST);
+            glDisable(GL_LIGHTING);
+            glDisable(GL_LIGHT0);
+            glDisable(GL_LIGHT1);
+            glDisable(GL_LIGHT2);
             estado = FINAL;
             return;
         }
@@ -308,7 +359,7 @@ void loadTexture(Image* image)
 void initTextures()
 {
     glEnable(GL_TEXTURE_2D);
-    Image* image = loadBMP("/Users/alfredo_altamirano/Documents/Tetris/Tetris/textures/tetris.bmp");
+    Image* image = loadBMP("resources/textures/tetris.bmp");
     loadTexture(image);
     delete image;
 }

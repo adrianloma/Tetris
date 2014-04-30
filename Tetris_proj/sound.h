@@ -24,7 +24,7 @@ void soundInit()
         endProg();
     }
     BASS_ChannelPlay(music, FALSE);
-    BASS_Pause();
+    //BASS_Pause();
     
     
     
